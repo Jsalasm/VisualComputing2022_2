@@ -14,7 +14,7 @@ Para la exploracion de las animacion se desea hacer uso de
 ### **4. Resultados**
 
 - Exploracion 1
-{{< p5-iframe sketch="/VisualComputing/sketches/Taller1/illusion1-0.js" width="420" height="526">}}
+{{< p5-iframe sketch="/VisualComputing2022_2/sketches/Taller1/illusion1-0.js" width="420" height="526">}}
 
 - Exploracion 2
 {{< p5-iframe sketch="/VisualComputing/sketches/t1/I2.js" width="420" height="526" >}}
