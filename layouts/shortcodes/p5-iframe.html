@@ -8,7 +8,7 @@
 
 <iframe
   id="{{ strings.TrimSuffix ".js" (path.Base $sketch) }}"
-  style="width:{{ default "800" (.Get `width`) }}px; height:{{ default "600" (.Get `height`) }}px"
+  style="width:{{ default "800" (.Get `width`) }}px; height:{{ default "600" (.Get `height`) }}px frameBorder="0""
   srcdoc="
         <!DOCTYPE html>
         <html>
