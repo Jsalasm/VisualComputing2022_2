@@ -22,7 +22,7 @@ enableGitInfo = true
 
   # Set source repository location.
   # Used for 'Last Modified' and 'Edit this page' links.
-  BookRepo = 'https://jsalasm.github.io/VisualComputing2022_2/'
+  BookRepo = 'https://github.com/Jsalasm/VisualComputing2022_2/'
 
   # Configure the date format used on the pages
   # - In git information
