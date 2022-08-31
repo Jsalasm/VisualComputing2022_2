@@ -1,5 +1,4 @@
 let img;
-
 // Convolution matrices
 
 let sharpenMatrix = [ [ -1, -1, -1 ] , 
@@ -32,7 +31,6 @@ function draw(){
         }
     }
     updatePixels();
-
     stroke(0);
     noFill();
 }
