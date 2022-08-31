@@ -16,7 +16,8 @@ function setup() {
 }
 
 function draw(){
-    img.resize(450,450)
+    loadPixels():
+    img.resize(450,450);
     img.loadPixels();
 
     for(let x = 0; x < img.width; x++){
