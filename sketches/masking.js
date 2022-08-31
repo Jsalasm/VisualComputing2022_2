@@ -7,7 +7,7 @@ let sharpenMatrix = [ [ -1, -1, -1 ] ,
                       [ -1, -1, -1 ] ];
 
 function preload() {
-    img = loadImage("content/docs/workshop/images/astronaut.jpg");
+    img = loadImage("/VisualComputing2022_2/images/astronaut.jpg");
 }
 
 function setup() {
