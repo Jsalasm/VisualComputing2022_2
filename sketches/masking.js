@@ -16,7 +16,7 @@ function setup() {
 }
 
 function draw(){
-    loadPixels():
+    loadPixels();
     img.resize(450,450);
     img.loadPixels();
 
