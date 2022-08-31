@@ -4,10 +4,11 @@
 En este taller se desea explorar la creacion de diferentes ilusiones opticas haciendo uso de la combinacion de diferentes referencias conceptuales basadas en ilusiones que veremos posteriormente.
 ### **2. Revision bibliografica**
 
-#### Ilusión de radios inversa
-	@@ -34,18 +35,26 @@ En esta ilustración,inventada por el cristalógrafo suizo Louis Albert Necker ,
-En esta ilustración,inventada por el cristalógrafo suizo Louis Albert Necker , trata de confundirnos en lo que es aparentemente un cubo, pero sus vértices se superponen según el manejo del sombreado.
+#### Lilac Chaser
+Esta ilusion es conocida por tener unas figuras de color magenta redondas, organizadas como un circulo y una cruz en la mitad, de tal manera que el espectador se fije en dicha cruz. 
 
+asi mismo se aprecia el efecto truxler, que consta en la percepción desvanecida del ojo, el cual cuando tenemos un punto fijo mirando una figura, veremos su color complementario cuando desaparesca, si esta se encuen en la percepcion desvanecida
+##### Efecto truxler:
 ### **3. Metodos**
 Para la exploracion de las animacion se desea hacer uso de 
 ### **4. Resultados**
