@@ -8,7 +8,7 @@
 
 <iframe
   id="{{ strings.TrimSuffix ".js" (path.Base $sketch) }}"
-  style="width:{{ default "800" (.Get `width`) }}px; height:{{ default "600" (.Get `height`) }}px; padding: 0; border: none; background-color: #000;"
+  style="width:{{ default "800" (.Get `width`) }}px; height:{{ default "600" (.Get `height`) }}px; padding: 0; border: none; background-color: #343a40; background: #343a40; "
   srcdoc="
         <!DOCTYPE html>
         <html>
@@ -22,8 +22,15 @@
             {{ if isset .Params "lib5" }} <script src={{ $lib5 }}></script> {{ end }}
             <script src={{ $sketch }}></script>
           </head>
-          <body>
+          <style>
+            body {
+              background-color: #343a40;
+            }
+            </style>
+          <body >
           </body>
         </html>
       "
+      
+      scrolling="no"
 ></iframe>

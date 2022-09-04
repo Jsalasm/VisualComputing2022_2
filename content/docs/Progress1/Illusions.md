@@ -26,10 +26,10 @@ se pensó primero en circulos que salieran aleatoriamente, luego un punto centra
 ### **4. Resultados**
 
 - Primer ejercicio:
-{{< p5-iframe sketch="/VisualComputing2022_2/sketches/Taller1/illusion1-0.js" width="420" height="526" frameBorder="5">}}
+{{< p5-iframe sketch="/VisualComputing2022_2/sketches/Taller1/illusion1-0.js"  >}}
 
 - Segundo ejercicio:
-{{< p5-iframe sketch="/VisualComputing2022_2/sketches/Taller1/illusion2-0.js" width="420" height="526" >}}
+{{< p5-iframe sketch="/VisualComputing2022_2/sketches/Taller1/illusion2-0.js" >}}
 
 ### **5. Conclusion**
 A la verga me da perecita hay mas cambios asi que los hago mas tarde (mas que todo de codigo para que quede mas chevere) , pero de verdad mas tarde lo hago todo bn
