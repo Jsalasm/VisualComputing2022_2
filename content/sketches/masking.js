@@ -47,7 +47,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(500, 900);
+    createCanvas(500, 500);
     pixelDensity(1);
 
     img.resize(0,500);
@@ -75,10 +75,10 @@ function setup() {
                 lightnessControl();
                 break;
             case 'HSV value':
-                hsvBrightness();
+                lightnessControl();
                 break;
             case 'HSL lightness':
-                hslLightness();
+                lightnessControl();
                 break;
             default:
                 brightnessControl();
@@ -168,8 +168,6 @@ function brightnessControl(luma = y709){
 
     img.updatePixels();
     showHistogram();
-
-    return luma;
 }
 
 function selectedValue(){
