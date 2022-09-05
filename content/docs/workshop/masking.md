@@ -68,13 +68,52 @@ Algunos kernels usados en este taller son:
 {{< hint info >}}
 
 **Ejemplo gŕafico -** Operación de convolución de una imagen con el kernel de Sharpen:
-<img src="https://miro.medium.com/max/1400/1*O06nY1U7zoP4vE5AZEnxKA.gif" alt="MarineGEO circle logo" style="height: 300px; width:600px; margin: 30px auto; display: block;"/>
+<img src="https://miro.medium.com/max/1400/1*O06nY1U7zoP4vE5AZEnxKA.gif" alt="Convolution" style="height: 300px; width:600px; margin: 30px auto; display: block;"/>
 
 {{< /hint >}}
 
 ## Luminosidad
-*Pendiente*
 
+<img src="https://c1.staticflickr.com/1/805/39523785660_ed4b725d9f_c.jpg" alt="Luma" style="height: 350px; width:600px; margin: 30px auto; display: block;"/>
+
+La luminosidad aplicada en este caso está asociada a una conversión del espacio de color RGB a un espacio de escala de grises aplicando métodos ponderados como también mediante la intensidad (método promedio), valor HSV y luminosidad HSL. Estos dos últimos transforman el espacio cartesiano RGB.
+
+Se obtiene esta escala de grises debido a la luminancia, la cual representa el brillo de las componentes de blanco y negro, esta se crea a partir de las componentes del espacio RGB las cuales son multiplicadas independientemente por un valor especifico.
+
+Dado que el ojo humano tiene un mayor sensibilidad a la luz verde, adquiere un mayor valor en la ponderación del luma (Y'), seguido del rojo y a su vez del azul.
+
+{{< katex display>}}
+Y_{601}^{'} = 0.2989 \cdot R + 0.5870 \cdot G + 0.1140 \cdot B
+{{< /katex >}}
+{{< katex display>}}
+Y_{240}^{'} = 0.212 \cdot R + 0.701 \cdot G + 0.087 \cdot B
+{{< /katex >}}
+{{< katex display>}}
+Y_{709}^{'} = 0.2126 \cdot R + 0.7152 \cdot G + 0.0.0722 \cdot B
+{{< /katex >}}
+{{< katex display>}}
+Y_{2020}^{'} = 0.2627 \cdot R + 0.6780 \cdot G + 0.0593 \cdot B 
+{{< /katex >}}
+
+Por otra parte, los siguientes métodos no tienen en cuenta esta sensibilidad.
+
+{{< hint info >}}
+Nota: Se recomienda dividir por separado cada componente RGB con el fin de que no se sobrepase un valor de 255.
+{{< /hint >}}
+
+{{< katex display>}}
+Intensity = \frac{1}{3}(R + G + B) = \frac{R}{3} + \frac{G}{3} + \frac{B}{3}
+{{< /katex >}}
+{{< katex display>}}
+HSV-Value = max(R, G, B)
+{{< /katex >}}
+{{< katex display>}}
+HSL-Lightness = \frac{1}{2}(max(R, G, B) + min(R, G, B))
+{{< /katex >}}
+
+# 3. Métodos
+
+Para la realización de este tema hicimos uso de los conceptos anteriormente expuestos, de tal forma que se presenta una implementación del procesamiento de imágenes mediante la convolución con distintos valores del kernel para lograr diferentes efectos, como también del brillo de una imagen mediante distintos métodos de luminosidad monocromática.
 
 # 4. Resultados
 
@@ -166,7 +205,7 @@ function setup() {
     selection.selected('Y709');
     selection.changed(selectedValue);
 
-    slider = createSlider(-100, 100, 0, 5);
+    slider = createSlider(0, 100, 0, 5);
     slider.position(10, 30);
 
     slider.changed(() => {
@@ -175,10 +214,10 @@ function setup() {
                 lightnessControl();
                 break;
             case 'HSV value':
-                hsvBrightness();
+                lightnessControl();
                 break;
             case 'HSL lightness':
-                hslLightness();
+                lightnessControl();
                 break;
             default:
                 brightnessControl();
@@ -259,9 +298,11 @@ function brightnessControl(luma = y709){
             gValue = img.pixels[index + 1] * luma[1] * percentage;
             bValue = img.pixels[index + 2] * luma[2] * percentage;
 
-            img.pixels[index] = constrain( img.pixels[index] - rValue, 0, 255);
-            img.pixels[index + 1] = constrain( img.pixels[index + 1] - gValue, 0, 255);
-            img.pixels[index + 2] = constrain( img.pixels[index + 2] - bValue, 0, 255);
+            let result = rValue + gValue + bValue;
+
+            img.pixels[index] = constrain( result, 0, 255);
+            img.pixels[index + 1] = constrain( result, 0, 255);
+            img.pixels[index + 2] = constrain( result, 0, 255);
             img.pixels[index + 3] = alpha(color(img.pixels[index], img.pixels[index + 1], img.pixels[index + 2]));
         }
     }
@@ -273,21 +314,21 @@ function brightnessControl(luma = y709){
 function selectedValue(){
     switch (selection.value()) {
         case 'Y601':
-            slider.value(0);
+            slider.value(100);
             brightnessControl(y601);
             break;
         case 'Y240':
-            slider.value(0);
+            slider.value(100);
             luma = y240;
             brightnessControl(y240);
             break;
         case 'Y709':
-            slider.value(0);
+            slider.value(100);
             luma = y709;
             brightnessControl(y709);
             break;
         case 'Y2020':
-            slider.value(0);
+            slider.value(100);
             luma = y2020;
             brightnessControl(y2020);
             break;
@@ -309,7 +350,7 @@ function lightnessControl(){
             let index = (x + y * img.width) * 4;
             
             if(selection.value() == 'Intensity'){
-                intensity = (img.pixels[index] + img.pixels[index + 1] + img.pixels[index + 2]) / 3;
+                intensity = img.pixels[index] / 3 + img.pixels[index + 1] / 3 + img.pixels[index + 2] / 3;
             }
             else if(selection.value() == 'HSV value'){
                 intensity = max(img.pixels[index], img.pixels[index + 1], img.pixels[index + 2]);
@@ -317,7 +358,7 @@ function lightnessControl(){
             else{
                 let aux = (max(img.pixels[index], img.pixels[index + 1], img.pixels[index + 2]));
                 let aux2 = (min(img.pixels[index], img.pixels[index + 1], img.pixels[index + 2]));
-                intensity = (aux + aux2) / 2;
+                intensity = aux / 2 + aux2 / 2;
             }
 
             intensity *= slider.value() / 100;
@@ -325,7 +366,7 @@ function lightnessControl(){
             img.pixels[index] = intensity;
             img.pixels[index + 1] = intensity;
             img.pixels[index + 2] = intensity;
-            img.pixels[index + 3] = alpha(color(intensity, intensity, intensity));
+            //img.pixels[index + 3] = alpha(color(intensity, intensity, intensity));
         }
     }
 
@@ -336,6 +377,7 @@ function lightnessControl(){
 function showHistogram(){
 
     noStroke();
+    fill(255,204, 0);
     img.loadPixels();
     
     for(let i = 0; i < 256; i++){
@@ -350,7 +392,6 @@ function showHistogram(){
         let intensity = (r + g + b) / 3;
         histogram[intensity]++;
     }
-    fill(255,204, 0);
 
     for(let i = 0; i < histogram.length; i++){                
         let x = map(i, 0, 255, 0, img.width);
@@ -387,8 +428,6 @@ function keyPressed() {
 ```
 {{< /details >}}
 
-# 5. Conclusión
-Se ha evidenciado que haciendo uso de un kernel, se pueden apreciar caracteristicas o lograr efectos sobre una imagen mediante la convolución, como también...
 
 ## Referencias
 * [Código guía](https://editor.p5js.org/cassie/sketches/u2wNEyqgs)
@@ -402,3 +441,9 @@ Se ha evidenciado que haciendo uso de un kernel, se pueden apreciar caracteristi
 * [Convolución en imagenes](https://medium.com/@bdhuma/6-basic-things-to-know-about-convolution-daef5e1bc411#:~:text=In%20image%20processing%2C%20convolution%20is,effect%20of%20the%20convolution%20process.)
 
 * [Kernels en el procesamiento de imágenes](https://nrsyed.com/2018/02/17/kernels-in-image-processing/)
+
+* [Luminosidad](https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness)
+
+* [Conversión del espacio de colo](https://www.dynamsoft.com/blog/insights/image-processing/image-processing-101-color-space-conversion/)
+
+* [Espacio de color HSV, HSL y RGB](https://www.davidsalomon.name/DC2advertis/AppendH.pdf)
