@@ -31,5 +31,12 @@ se pensó primero en circulos que salieran aleatoriamente, luego un punto centra
 - Segundo ejercicio:
 {{< p5-iframe sketch="/VisualComputing2022_2/sketches/Taller1/illusion2-0.js" >}}
 
+- Tercer ejercicio:
+    ¿Existen puntos entre las esquinas de los cuadrados?
+{{< p5-iframe sketch="/VisualComputing2022_2/sketches/Taller1/GridNoPoints.js" >}}
+    Ahora que son visibles, ¿Son todos los puntos blancos o algunos son negros?
+{{< p5-iframe sketch="/VisualComputing2022_2/sketches/Taller1/GridPoints.js" >}}
+
+
 ### **5. Conclusion**
-A la verga me da perecita hay mas cambios asi que los hago mas tarde (mas que todo de codigo para que quede mas chevere) , pero de verdad mas tarde lo hago todo bn
+Con una simple verificación del código de ejecución de las ilusiones ópticas que acabamos de ver podemos bislumbrar que no existe ningún truco de trasfondo en las imágenes que observamos, sino que al final del día nuestra visión nos engaña basada en lo que espera ver y podemos aprovecharnos de ese hecho para engañar a nuestro cerebro en muchas formas distintas de manera muy creativa
