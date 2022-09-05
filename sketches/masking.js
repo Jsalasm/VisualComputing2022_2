@@ -66,7 +66,7 @@ function setup() {
     selection.selected('Y709');
     selection.changed(selectedValue);
 
-    slider = createSlider(-100, 100, 0, 5);
+    slider = createSlider(0, 100, 0, 5);
     slider.position(10, 30);
 
     slider.changed(() => {
@@ -159,9 +159,11 @@ function brightnessControl(luma = y709){
             gValue = img.pixels[index + 1] * luma[1] * percentage;
             bValue = img.pixels[index + 2] * luma[2] * percentage;
 
-            img.pixels[index] = constrain( img.pixels[index] - rValue, 0, 255);
-            img.pixels[index + 1] = constrain( img.pixels[index + 1] - gValue, 0, 255);
-            img.pixels[index + 2] = constrain( img.pixels[index + 2] - bValue, 0, 255);
+            let result = rValue + gValue + bValue;
+
+            img.pixels[index] = constrain( result, 0, 255);
+            img.pixels[index + 1] = constrain( result, 0, 255);
+            img.pixels[index + 2] = constrain( result, 0, 255);
             img.pixels[index + 3] = alpha(color(img.pixels[index], img.pixels[index + 1], img.pixels[index + 2]));
         }
     }
@@ -173,21 +175,21 @@ function brightnessControl(luma = y709){
 function selectedValue(){
     switch (selection.value()) {
         case 'Y601':
-            slider.value(0);
+            slider.value(100);
             brightnessControl(y601);
             break;
         case 'Y240':
-            slider.value(0);
+            slider.value(100);
             luma = y240;
             brightnessControl(y240);
             break;
         case 'Y709':
-            slider.value(0);
+            slider.value(100);
             luma = y709;
             brightnessControl(y709);
             break;
         case 'Y2020':
-            slider.value(0);
+            slider.value(100);
             luma = y2020;
             brightnessControl(y2020);
             break;
@@ -209,7 +211,7 @@ function lightnessControl(){
             let index = (x + y * img.width) * 4;
             
             if(selection.value() == 'Intensity'){
-                intensity = (img.pixels[index] + img.pixels[index + 1] + img.pixels[index + 2]) / 3;
+                intensity = img.pixels[index] / 3 + img.pixels[index + 1] / 3 + img.pixels[index + 2] / 3;
             }
             else if(selection.value() == 'HSV value'){
                 intensity = max(img.pixels[index], img.pixels[index + 1], img.pixels[index + 2]);
@@ -217,7 +219,7 @@ function lightnessControl(){
             else{
                 let aux = (max(img.pixels[index], img.pixels[index + 1], img.pixels[index + 2]));
                 let aux2 = (min(img.pixels[index], img.pixels[index + 1], img.pixels[index + 2]));
-                intensity = (aux + aux2) / 2;
+                intensity = aux / 2 + aux2 / 2;
             }
 
             intensity *= slider.value() / 100;
@@ -225,7 +227,7 @@ function lightnessControl(){
             img.pixels[index] = intensity;
             img.pixels[index + 1] = intensity;
             img.pixels[index + 2] = intensity;
-            img.pixels[index + 3] = alpha(color(intensity, intensity, intensity));
+            //img.pixels[index + 3] = alpha(color(intensity, intensity, intensity));
         }
     }
 
@@ -236,6 +238,7 @@ function lightnessControl(){
 function showHistogram(){
 
     noStroke();
+    fill(255,204, 0);
     img.loadPixels();
     
     for(let i = 0; i < 256; i++){
@@ -250,7 +253,6 @@ function showHistogram(){
         let intensity = (r + g + b) / 3;
         histogram[intensity]++;
     }
-    fill(255,204, 0);
 
     for(let i = 0; i < histogram.length; i++){                
         let x = map(i, 0, 255, 0, img.width);
