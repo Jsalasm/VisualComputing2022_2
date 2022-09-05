@@ -31,7 +31,15 @@ const sobelMatrix = [[ -1, -2, -1 ],
 
 const matrixSize = 3;
 
-let img, file;
+
+// Luma Y' values for brightness
+
+const y601 = [0.299, 0.587, 0.114];
+const y240 = [0.212, 0.701, 0.087];
+const y709 = [0.2126, 0.7152, 0.0722];
+const y2020 = [0.2627, 0.6780, 0.0593];
+
+let img, file, selection, slider, histogram = [], show = false;
 
 function preload() {
     file = loadImage("/VisualComputing2022_2/docs/workshop/images/astronaut.jpg");
@@ -39,15 +47,49 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(500, 500);
+    createCanvas(500, 900);
     pixelDensity(1);
 
     img.resize(0,500);
     file.resize(0,500);
+
+    selection = createSelect();
+    selection.position(10, 10);
+    selection.option('Y601');
+    selection.option('Y240');
+    selection.option('Y709');
+    selection.option('Y2020');
+    selection.option('Intensity');
+    selection.option('HSV value');
+    selection.option('HSL lightness');
+
+    selection.selected('Y709');
+    selection.changed(selectedValue);
+
+    slider = createSlider(-100, 100, 0, 5);
+    slider.position(10, 30);
+
+    slider.changed(() => {
+        switch (selection.value()) {
+            case 'Intensity':
+                lightnessControl();
+                break;
+            case 'HSV value':
+                hsvBrightness();
+                break;
+            case 'HSL lightness':
+                hslLightness();
+                break;
+            default:
+                brightnessControl();
+                break;
+        }
+    });
 }
 
 function draw(){
     image(img, 0, 0);
+    if(show) showHistogram();
 }
 
 function convolution(x, y, kernel){
@@ -93,10 +135,130 @@ function convolveImage(kernel){
 
     stroke(300, 100, 80);
     img.updatePixels();
+    showHistogram();
 }
 
 function resetImage(){
     img.copy(file, 0, 0, file.width, file.height, 0, 0, file.width, file.height);
+    showHistogram();
+}
+
+function brightnessControl(luma = y709){
+    resetImage();
+
+    img.loadPixels();
+
+    let percentage = slider.value() / 100;
+
+    for (let x = 0; x < img.width; x++) {
+        for (let y = 0; y < img.height; y++) {
+
+            let index = (x + y * img.width) * 4;
+            
+            rValue = img.pixels[index] * luma[0] * percentage;
+            gValue = img.pixels[index + 1] * luma[1] * percentage;
+            bValue = img.pixels[index + 2] * luma[2] * percentage;
+
+            img.pixels[index] = constrain( img.pixels[index] - rValue, 0, 255);
+            img.pixels[index + 1] = constrain( img.pixels[index + 1] - gValue, 0, 255);
+            img.pixels[index + 2] = constrain( img.pixels[index + 2] - bValue, 0, 255);
+            img.pixels[index + 3] = alpha(color(img.pixels[index], img.pixels[index + 1], img.pixels[index + 2]));
+        }
+    }
+
+    img.updatePixels();
+    showHistogram();
+
+    return luma;
+}
+
+function selectedValue(){
+    switch (selection.value()) {
+        case 'Y601':
+            slider.value(0);
+            brightnessControl(y601);
+            break;
+        case 'Y240':
+            slider.value(0);
+            luma = y240;
+            brightnessControl(y240);
+            break;
+        case 'Y709':
+            slider.value(0);
+            luma = y709;
+            brightnessControl(y709);
+            break;
+        case 'Y2020':
+            slider.value(0);
+            luma = y2020;
+            brightnessControl(y2020);
+            break;
+        default:
+            slider.value(100);
+            lightnessControl();
+            break;
+    }
+}
+
+function lightnessControl(){
+    resetImage();
+    img.loadPixels();
+
+    let intensity = 0;
+    for (let x = 0; x < img.width; x++) {
+        for (let y = 0; y < img.height; y++) {
+                
+            let index = (x + y * img.width) * 4;
+            
+            if(selection.value() == 'Intensity'){
+                intensity = (img.pixels[index] + img.pixels[index + 1] + img.pixels[index + 2]) / 3;
+            }
+            else if(selection.value() == 'HSV value'){
+                intensity = max(img.pixels[index], img.pixels[index + 1], img.pixels[index + 2]);
+            }
+            else{
+                let aux = (max(img.pixels[index], img.pixels[index + 1], img.pixels[index + 2]));
+                let aux2 = (min(img.pixels[index], img.pixels[index + 1], img.pixels[index + 2]));
+                intensity = (aux + aux2) / 2;
+            }
+
+            intensity *= slider.value() / 100;
+
+            img.pixels[index] = intensity;
+            img.pixels[index + 1] = intensity;
+            img.pixels[index + 2] = intensity;
+            img.pixels[index + 3] = alpha(color(intensity, intensity, intensity));
+        }
+    }
+
+    img.updatePixels();
+    showHistogram();
+}
+
+function showHistogram(){
+
+    noStroke();
+    img.loadPixels();
+    
+    for(let i = 0; i < 256; i++){
+        histogram[i] = 0;
+    }
+
+    for(let i = 0; i < img.pixels.length; i += 4){
+        let r = img.pixels[i];
+        let g = img.pixels[i + 1];
+        let b = img.pixels[i + 2];
+
+        let intensity = (r + g + b) / 3;
+        histogram[intensity]++;
+    }
+    fill(255,204, 0);
+
+    for(let i = 0; i < histogram.length; i++){                
+        let x = map(i, 0, 255, 0, img.width);
+        let y = constrain(histogram[i], 0, 400);
+        rect(x, img.height, width / 256, -y);
+    }
 }
 
 function keyPressed() {
@@ -118,6 +280,9 @@ function keyPressed() {
             break;
         case '6':
             convolveImage(sobelMatrix);
+            break;
+        case 'h':
+            show = !show;
             break;
     }
 }
