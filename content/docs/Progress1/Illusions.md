@@ -26,9 +26,11 @@ se pensó primero en circulos que salieran aleatoriamente, luego un punto centra
 ### **4. Resultados**
 
 - Primer ejercicio:
+    ¿Acaso el rectángulo inferior cambia de color?
 {{< p5-iframe sketch="/VisualComputing2022_2/sketches/Taller1/illusion1-0.js"  >}}
 
 - Segundo ejercicio:
+    ¿Ese círculo cambió de color antes de desaparecer?
 {{< p5-iframe sketch="/VisualComputing2022_2/sketches/Taller1/illusion2-0.js" >}}
 
 - Tercer ejercicio:
@@ -36,6 +38,10 @@ se pensó primero en circulos que salieran aleatoriamente, luego un punto centra
 {{< p5-iframe sketch="/VisualComputing2022_2/sketches/Taller1/GridNoPoints.js" >}}
     Ahora que son visibles, ¿Son todos los puntos blancos o algunos son negros?
 {{< p5-iframe sketch="/VisualComputing2022_2/sketches/Taller1/GridPoints.js" >}}
+
+- Cuarto ejercicio:
+    ¿Puedes ver la altura como si se tratase de una torre?
+{{< p5-iframe sketch="/VisualComputing2022_2/sketches/Taller1/tower.js" >}}
 
 
 ### **5. Conclusion**
