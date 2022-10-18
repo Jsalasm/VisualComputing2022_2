@@ -1,10 +1,11 @@
 var boxArray = [];
 var group;
 var camera, scene, renderer, webGlCanvas;
-var ball, ruler, light;
+var ball, ruler, light, rotationFlag;
 const thickness = 0.1;
 
 function initialize() {
+    rotationFlag = true;
 	scene = new THREE.Scene();
 
 	camera = new THREE.OrthographicCamera(
@@ -31,6 +32,7 @@ function initialize() {
 	}
 
 	scene.add(group);
+    
 	createBall();
 	createRuler();
 	initButtons();
@@ -81,9 +83,7 @@ function initBoxes() {
 
 function animate() {
 	requestAnimationFrame(animate);
-	group.rotation.y += 0.02;
-	ruler.rotation.y += 0.02;
-	ball.rotation.y += 0.02;
+	rotateObjects();
 	renderer.render(scene, camera);
 }
 
@@ -110,6 +110,13 @@ function createRuler() {
 	scene.add(ruler);
 }
 
+function rotateObjects(){
+    if(rotationFlag){
+        group.rotation.y += 0.02;
+	    ruler.rotation.y += 0.02;
+    }
+}
+
 function initButtons() {
 	document.getElementById("ball").addEventListener("click", function () {
 		ball.visible = !ball.visible;
@@ -117,6 +124,9 @@ function initButtons() {
 	document.getElementById("ruler").addEventListener("click", function () {
 		ruler.visible = !ruler.visible;
 	});
+    document.getElementById("rotation").addEventListener("click", function () {
+        rotationFlag = !rotationFlag;
+    });
 }
 
 initialize();
