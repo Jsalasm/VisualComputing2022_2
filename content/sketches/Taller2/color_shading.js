@@ -6,15 +6,15 @@ let slider, colorPick = [6, 6, 23];
 
 function setup(){
     createCanvas(500, 500);
-    frameRate(5);
+    frameRate(10);
     slider = createSlider(5, 100, 25, 5);
     slider.position(25, 25);
 
     quadrille = createQuadrille(ROWS, COLS);
 
-    v0Color = createColorPicker(color('red'));
-    v1Color = createColorPicker(color('green'));
-    v2Color = createColorPicker(color('blue'));
+    v0Color = createColorPicker(color('#f6d265'));
+    v1Color = createColorPicker(color('#2a65b4'));
+    v2Color = createColorPicker(color('#cc0a30'));
 
     v0Color.position(180, 20);
     v1Color.position(240, 20);
@@ -34,8 +34,8 @@ function draw(){
     background('#060621');
     drawQuadrille(quadrille, { cellLength: LENGTH, outlineWeight: 0.5, outlineColor: color('green'), board: false });
     tri();
-    //setText();
-    //pickColor();
+    setText();
+    pickColor();
 }
 
 function randomTriangle(){
@@ -96,28 +96,22 @@ function setText(){
     rect(370, 12, 110, 25, 2)
     noStroke();
 
-    textSize(16);
-    textAlign(RIGHT);
     fill(255);
-    text(colorPick.toString(), width - 47, 30)
+    text(colorPick.toString(), width - 75, 30)
+    textSize(16);
+    textAlign(CENTER);
 }
 
 function pickColor(){
     let x = mouseX;
     let y = mouseY;
 
-    let rowCell = floor(x / LENGTH);
-    let colCell = floor(y / LENGTH);
-
+    let colCell = floor(x / LENGTH);
+    let rowCell = floor(y / LENGTH);
 
     let cellInfo = quadrille.read(rowCell, colCell)
-    if(cellInfo){
-        console.log(cellInfo.levels)
-        colorPick = ([cellInfo.levels[0], cellInfo.levels[1], cellInfo.levels[2]]);
-    }
-    else{
-        console.log(cellInfo.levels, rowCell, colCell)
-        colorPick = [6, 6, 23];
-    }
-    
+
+    cellInfo
+    ? colorPick = ([cellInfo.levels[0], cellInfo.levels[1], cellInfo.levels[2]])
+    : colorPick = [6, 6, 23];
 }
