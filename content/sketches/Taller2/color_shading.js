@@ -2,22 +2,23 @@ let quadrille;
 let ROWS, COLS, LENGTH;
 let x0, y0, x1, y1, x2, y2;
 let v0Color, v1Color, v2Color;
-let slider, checkboxAntialiasing;
+let slider, colorPick = [6, 6, 23];
 
 function setup(){
     createCanvas(500, 500);
+    frameRate(5);
     slider = createSlider(5, 100, 25, 5);
     slider.position(25, 25);
 
     quadrille = createQuadrille(ROWS, COLS);
 
     v0Color = createColorPicker(color('red'));
-    v1Color = createColorPicker(color('blue'));
-    v2Color = createColorPicker(color('green'));
+    v1Color = createColorPicker(color('green'));
+    v2Color = createColorPicker(color('blue'));
 
-    v0Color.position(200, 20);
-    v1Color.position(260, 20);
-    v2Color.position(320, 20);
+    v0Color.position(180, 20);
+    v1Color.position(240, 20);
+    v2Color.position(300, 20);
 
     v0Color.input(() => { quadrille.colorizeTriangle(x0, y0, x1, y1, x2, y2, v0Color.color(), v1Color.color(), v2Color.color()) });
     v1Color.input(() => { quadrille.colorizeTriangle(x0, y0, x1, y1, x2, y2, v0Color.color(), v1Color.color(), v2Color.color()) });
@@ -26,10 +27,6 @@ function setup(){
     quadrilleZoom();
     slider.changed(quadrilleZoom);
 
-    checkboxAntialiasing = createCheckbox('Antialiasing', false);
-    checkboxAntialiasing.position(380,15)
-    checkboxAntialiasing.style('color', 'white')
-
     randomTriangle();
 }
 
@@ -37,13 +34,12 @@ function draw(){
     background('#060621');
     drawQuadrille(quadrille, { cellLength: LENGTH, outlineWeight: 0.5, outlineColor: color('green'), board: false });
     tri();
-
-    if(checkboxAntialiasing.checked()){
-        colorizeTriangle();
-    }
+    //setText();
+    //pickColor();
 }
 
 function randomTriangle(){
+
     x0 = int(random(0, ROWS));
     y0 = int(random(0, COLS));
     x1 = int(random(0, ROWS));
@@ -92,4 +88,36 @@ function quadrilleZoom(){
     y2 = round(map(y2, 0, aux2, 0, COLS));
 
     quadrille.colorizeTriangle(x0, y0, x1, y1, x2, y2, v0Color.color(), v1Color.color(), v2Color.color());
+}
+
+function setText(){
+
+    fill(colorPick);
+    rect(370, 12, 110, 25, 2)
+    noStroke();
+
+    textSize(16);
+    textAlign(RIGHT);
+    fill(255);
+    text(colorPick.toString(), width - 47, 30)
+}
+
+function pickColor(){
+    let x = mouseX;
+    let y = mouseY;
+
+    let rowCell = floor(x / LENGTH);
+    let colCell = floor(y / LENGTH);
+
+
+    let cellInfo = quadrille.read(rowCell, colCell)
+    if(cellInfo){
+        console.log(cellInfo.levels)
+        colorPick = ([cellInfo.levels[0], cellInfo.levels[1], cellInfo.levels[2]]);
+    }
+    else{
+        console.log(cellInfo.levels, rowCell, colCell)
+        colorPick = [6, 6, 23];
+    }
+    
 }
