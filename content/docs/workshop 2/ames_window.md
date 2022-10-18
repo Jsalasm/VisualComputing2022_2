@@ -2,6 +2,7 @@
 
 <button id="ruler" type="button">Ruler</button>
 <button id="ball" type="button">Ball</button>
+<button id="rotation" type="button">Rotation</button>
 
 <div id="webGlDiv" width:  700px; height: 700px; border: 1px solid black;"/> 
 
