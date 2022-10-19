@@ -12,9 +12,17 @@ function setup() {
   createCanvas(400, 400, WEBGL);
   mangle = atan(1/sqrt(2)); // angulo que mejora la perspectiva
   maxD = dist(0,0,200,200);
+  slider = createSlider(10, 40, 30,10);
+  slider.position(10, 10);
 }
 
 function draw() {
+  if(slider.value()<=20){ // cuando esta en treinta no se logra apreciar la canoa
+    w= slider.value();
+    console.log(slider.value())
+  }else{
+    w= slider.value()+10;
+  }
   background(0);
   ortho(-300,280,-200,1000,0,500) // permite mantener una vision ortografica de tal manera que mantiene una vision durante cierto espacio, una vez salido del espacio no se verán solidos o cuerpos
   rotateX(-QUARTER_PI);
