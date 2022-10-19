@@ -16,12 +16,58 @@ La rasterización es el proceso por el cual una primitiva o un gráfico vectoria
 
 ### **Coordenadas baricéntricas**
 
+Es un sistema de coordenadas en el cual un punto dentro de un triángulo se puede representar mediante pesos, de modo que e punto se puede interpretar como un centro de masa.
+
+Considere un triángulo cuyos vertices son {{< katex >}}A=(x_0, y_0), B=(x_1, y_1), C=(x_2, y_2){{< /katex >}} y un punto {{< katex >}}p{{< /katex >}}. Entonces, el punto {{< katex >}}p{{< /katex >}} se puede representar como:
+
+{{< katex display >}}p = \alpha A + \beta B + \gamma C{{< /katex >}}
+
+Se tiene que un punto está dentro del triángulo si y solo si:
+{{< katex display >}}
+0 < \alpha < 1
+{{< /katex >}}
+{{< katex display >}}
+0 < \beta < 1
+{{< /katex >}}
+{{< katex display >}}
+0 < \gamma < 1
+{{< /katex >}}
+
+Los pesos que antes se mencionaron se pueden calcular de la siguiente manera:
+
+{{< katex display >}}
+P_x = W_{v0}X_{v0} + W_{v2}X_{v2} + W_{v2}X_{v2}
+{{< /katex >}}
+
+{{< katex display >}}
+P_y = W_{v0}Y_{v0} + W_{v2}Y_{v2} + W_{v2}Y_{v2}
+{{< /katex >}}
+{{< katex display >}}
+W_{v0} + W_{v0} + W_{v2} = 1
+{{< /katex >}}
+
+Una aplicación de las coordenadas baricéntricas es la interpolación de colores, es decir, determinar el color de un punto dentro de un triángulo, para esto se cualcular de la siguiente manera:
+
+{{< katex display >}}
+C = \alpha C_A + \beta C_B + \gamma C_C
+{{< /katex >}}
+
+Cabe mencionar que cada uno de los colores {{< katex >}}C_A, C_B, C_C{{< /katex >}} es un vector de 3 componentes, {{< katex >}}(R, G, B){{< /katex >}}.
+
+La interpolación de colores se puede realizar también de la siguiente manera mediante los pesos mencionados anteriormente:
+
+{{< katex display >}}
+Color_p = \frac{W_{v0}Color_{v0} + W_{v1}Color_{v1} + W_{v2}Color_{v2}}{W_{v0} + W_{v1} + W_{v2}}
+{{< /katex >}}
+
+<img src="https://codeplea.com/public/content/tri-int-naive-slant.png" alt="Color interpolation" style="height: 250px; width:230px; margin: 60px auto; display: block;"/>
+
 ## 3. Métodos
-Para la realización de este tema hicimos uso de los conceptos anteriormente expuestos, de tal forma que se presenta una implementación de la rasterización de un triángulo con color shading por medio de las coordenadas baricéntricas.
+Para la realización de este tema hicimos uso de los conceptos anteriormente expuestos junto con la libreria de p5.quadrille.js, de tal forma que se presenta una implementación de la rasterización de un triángulo con color shading por medio de las coordenadas baricéntricas.
 
 ## 4. Resultados
 
-{{< details "Intrucciones" >}}
+{{< details "Instrucciones" >}}
 
 - Al presionar cualquier tecla, se mostrará un nuevo triángulo aleatorio.
 - Al pasar por encima de una celda, se mostará el color de dicha celda.
