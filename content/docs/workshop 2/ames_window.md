@@ -17,8 +17,7 @@ Donde {{< katex >}} \bold{T} {{< /katex >}} sera la matrix de traslación en 3D 
 {{< katex >}} T = \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ T_x & T_y & T_z & 1 \end{bmatrix} {{< /katex >}}
 
 
-
-<img src="http://galia.fc.uaslp.mx/~medellin/Applets/Trans3D/transf9.gif">
+<img src="/VisualComputing2022_2/sketches/Taller2/translation.gif">
 
 ### **Rotación**
 
