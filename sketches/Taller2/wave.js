@@ -4,9 +4,13 @@ let ma = 0;
 function setup() {
   createCanvas(400, 400, WEBGL);
   ma = atan(1/sqrt(2));
+
+  slider = createSlider(12, 40, 24);
+  slider.position(10, 10);
 }
 
 function draw() {
+  w= slider.value();
   background(0);
   ortho(-300,280,-300,1000,0,500)
   rotateX(-QUARTER_PI);
