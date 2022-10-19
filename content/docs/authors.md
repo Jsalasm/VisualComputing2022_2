@@ -19,4 +19,9 @@
 <img src="/VisualComputing2022_2/sketches/jo2.svg" alt="" style="width:150px;"/>
 
 - Estudiante de Ingeniería de Sistemas y Computación - Universidad Nacional de Colombia
+
+## Juan Camilo Villota Ballesteros
+<img src="/VisualComputing2022_2/sketches/jo2.svg" alt="" style="width:150px;"/>
+
+- Estudiante de Ingeniería de Sistemas y Computación - Universidad Nacional de Colombia
 {{< /columns >}}
