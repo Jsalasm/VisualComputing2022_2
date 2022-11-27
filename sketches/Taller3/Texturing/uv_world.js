@@ -1,38 +1,31 @@
 let easycam;
 let uvShader;
+let slider;
 
 function preload() {
-  // Define geometry in world space (i.e., matrices: Tree.pmvMatrix).
-  // The projection and modelview matrices may be emitted separately
-  // (i.e., matrices: Tree.pMatrix | Tree.mvMatrix), which actually
-  // leads to the same gl_Position result.
-  // Interpolate only texture coordinates (i.e., varyings: Tree.texcoords2).
-  // see: https://github.com/VisualComputing/p5.treegl#handling
   uvShader = readShader('/VisualComputing2022_2/sketches/Taller3/Texturing/uv.frag',
-                  { matrices: Tree.pmvMatrix, varyings: Tree.texcoords2 });
+          { precision: Tree.highp,matrices: Tree.pmvMatrix, varyings: Tree.texcoords2 });
 }
 
 function setup() {
-  createCanvas(300, 300, WEBGL);
+  createCanvas(500, 500, WEBGL);
   textureMode(NORMAL);
-  // use custom shader
   shader(uvShader);
+  slider = createSlider(0, 255, 0);
+  slider.position(350, 10);
 }
 
 function draw() {
-  background(200);
+  background(0);
+  uvShader.setUniform('x', slider.value() / 255);
   orbitControl();
   axes();
   push();
   noStroke();
-  // world-space quad
-  // (i.e., p5 world space definition: https://t.ly/GeYP)
-  quad(-width / 2, -height / 2, width / 2, -height / 2,
-        width / 2, height / 2, -width / 2, height / 2);
+  ellipsoid(width / 4, height / 4, width / 4);
   pop();
 }
 
 function mouseWheel(event) {
-  //comment to enable page scrolling
   return false;
 }

@@ -2,7 +2,7 @@
 UV Visualization # The texture is defined in the so called uv space which itself may be displayed in a variaty of ways such as the one below:
 uv.js let uvShader; function preload() { // Define geometry directly in clip space (i."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="Texturing # A texture is an image (i.e., either a bitmap or a procedural texture) mapped onto the surface of a shape usually specified in a triangle by triangle basis.
 UV Visualization # The texture is defined in the so called uv space which itself may be displayed in a variaty of ways such as the one below:
-uv.js let uvShader; function preload() { // Define geometry directly in clip space (i."><meta property="og:type" content="article"><meta property="og:url" content="https://jsalasm.github.io/VisualComputing2022_2/docs/workshop-3/2.-Texturing/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2022-11-26T20:09:06-05:00"><title>2. Texturing | Showcase Template</title><link rel=manifest href=/VisualComputing2022_2/manifest.json><link rel=icon href=/VisualComputing2022_2/favicon.png type=image/x-icon><link rel=stylesheet href=/VisualComputing2022_2/book.min.ab46de3e725a6415339a37bba23a0067534a37289b063c9f8d011515a63097a8.css integrity="sha256-q0bePnJaZBUzmje7ojoAZ1NKNyibBjyfjQEVFaYwl6g=" crossorigin=anonymous><script defer src=/VisualComputing2022_2/flexsearch.min.js></script>
+uv.js let uvShader; function preload() { // Define geometry directly in clip space (i."><meta property="og:type" content="article"><meta property="og:url" content="https://jsalasm.github.io/VisualComputing2022_2/docs/workshop-3/2.-Texturing/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2022-11-26T23:20:29-05:00"><title>2. Texturing | Showcase Template</title><link rel=manifest href=/VisualComputing2022_2/manifest.json><link rel=icon href=/VisualComputing2022_2/favicon.png type=image/x-icon><link rel=stylesheet href=/VisualComputing2022_2/book.min.ab46de3e725a6415339a37bba23a0067534a37289b063c9f8d011515a63097a8.css integrity="sha256-q0bePnJaZBUzmje7ojoAZ1NKNyibBjyfjQEVFaYwl6g=" crossorigin=anonymous><script defer src=/VisualComputing2022_2/flexsearch.min.js></script>
 <script defer src=/VisualComputing2022_2/en.search.min.5c7ec0df46533f434735381b205e782d18c7786ba27faf450b0dbedf79691449.js integrity="sha256-XH7A30ZTP0NHNTgbIF54LRjHeGuif69FCw2+33lpFEk=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/VisualComputing2022_2/><span>Showcase Template</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><a href=/VisualComputing2022_2/docs/authors/>Authors</a></li><li><a href=/VisualComputing2022_2/docs/logs/>Logs</a></li><li><input type=checkbox id=section-cb5166b5972776a786c8f0abb960e1df class=toggle>
 <label for=section-cb5166b5972776a786c8f0abb960e1df class="flex justify-between"><a role=button>Workshop 1</a></label><ul><li><a href=/VisualComputing2022_2/docs/workshop-1/Illusions/>Illusions</a></li><li><a href=/VisualComputing2022_2/docs/workshop-1/masking/>Masking</a></li></ul></li><li><input type=checkbox id=section-b3489b1dba5179c28e00fd119bd3b043 class=toggle>
@@ -12,13 +12,13 @@ uv.js let uvShader; function preload() { // Define geometry directly in clip spa
 <strong>2. Texturing</strong>
 <label for=toc-control><img src=/VisualComputing2022_2/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><ul><li><a href=#texturing>Texturing</a><ul><li><a href=#uv-visualization>UV Visualization</a></li><li><a href=#3d>3D</a></li><li><a href=#world>World</a></li><li><a href=#screen>Screen</a></li></ul></li><li><a href=#texture-mapping>Texture mapping</a></li><li><a href=#texture-sampling>Texture sampling</a></li></ul></li></ul></nav></aside></header><article class=markdown><h2 id=texturing>Texturing
 <a class=anchor href=#texturing>#</a></h2><p>A texture is an image (i.e., either a bitmap or a procedural texture) mapped onto the surface of a shape usually specified in a triangle by triangle basis.</p><h3 id=uv-visualization>UV Visualization
-<a class=anchor href=#uv-visualization>#</a></h3><p>The texture is defined in the so called uv space which itself may be displayed in a variaty of ways such as the one below:</p><iframe id=uv style=width:325px;height:325px;padding:0;border:none;background-color:#343a40;background:#343a40 srcdoc="
+<a class=anchor href=#uv-visualization>#</a></h3><p>The texture is defined in the so called uv space which itself may be displayed in a variaty of ways such as the one below:</p><iframe id=uv style=width:500px;height:500px;padding:0;border:none;background-color:#343a40;background:#343a40 srcdoc="
         <!DOCTYPE html>
         <html>
           <head>
             <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js></script>
             <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/addons/p5.sound.min.js></script>
-             <script src=https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js></script> 
+             <script src=/VisualComputing2022_2/sketches/libraries/p5.treegl.js></script> 
             
             
             
@@ -97,13 +97,13 @@ uv.js let uvShader; function preload() { // Define geometry directly in clip spa
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div></div></details></p><h3 id=3d>3D
 <a class=anchor href=#3d>#</a></h3><p>3D real-time interaction requires view and projection matrices to compute the vertex clip-space projection within the vertex shader. For instance, we can render the previous uv visualization in world space or use it as a screen filter while navigating a 3D scene.</p><h3 id=world>World
-<a class=anchor href=#world>#</a></h3><p><iframe id=uv_world style=width:325px;height:325px;padding:0;border:none;background-color:#343a40;background:#343a40 srcdoc="
+<a class=anchor href=#world>#</a></h3><p><iframe id=uv_world style=width:500px;height:500px;padding:0;border:none;background-color:#343a40;background:#343a40 srcdoc="
         <!DOCTYPE html>
         <html>
           <head>
             <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js></script>
             <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/addons/p5.sound.min.js></script>
-             <script src=https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js></script> 
+             <script src=/VisualComputing2022_2/sketches/libraries/p5.treegl.js></script> 
             
             
             
@@ -158,14 +158,14 @@ uv.js let uvShader; function preload() { // Define geometry directly in clip spa
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div></div></details></p><h3 id=screen>Screen
-<a class=anchor href=#screen>#</a></h3><p><iframe id=uv_screen style=width:325px;height:325px;padding:0;border:none;background-color:#343a40;background:#343a40 srcdoc="
+<a class=anchor href=#screen>#</a></h3><p><iframe id=uv_screen style=width:500px;height:500px;padding:0;border:none;background-color:#343a40;background:#343a40 srcdoc="
         <!DOCTYPE html>
         <html>
           <head>
             <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js></script>
             <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/addons/p5.sound.min.js></script>
-             <script src=https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js></script> 
-             <script src=https://cdn.jsdelivr.net/gh/freshfork/p5.EasyCam@1.2.1/p5.easycam.js></script> 
+             <script src=/VisualComputing2022_2/sketches/libraries/p5.treegl.js></script> 
+             <script src=/VisualComputing2022_2/sketches/libraries/p5.easycam.js></script> 
             
             
             
@@ -253,14 +253,35 @@ uv.js let uvShader; function preload() { // Define geometry directly in clip spa
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>vec4</span>(<span style=color:#a6e22e>texcoords2</span>.<span style=color:#a6e22e>xy</span>, <span style=color:#ae81ff>0.0</span>, <span style=color:#a6e22e>opacity</span>);
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div></div></details></p><h2 id=texture-mapping>Texture mapping
-<a class=anchor href=#texture-mapping>#</a></h2><p>Texture mapping by hardware can easily be implemented by vanilla p5 texture and textureMode functions alone (no custom shader needed at all). For example, both commands are used to texturize a triangle pruducing a similar result to that obtained by software:</p><h2 id=texture-sampling>Texture sampling
+<a class=anchor href=#texture-mapping>#</a></h2><p>Texture mapping by hardware can easily be implemented by vanilla p5 texture and textureMode functions alone (no custom shader needed at all). For example, both commands are used to texturize a triangle pruducing a similar result to that obtained by software:</p><iframe id=video_cube style=width:500px;height:500px;padding:0;border:none;background-color:#343a40;background:#343a40 srcdoc="
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js></script>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/addons/p5.sound.min.js></script>
+             <script src=/VisualComputing2022_2/sketches/libraries/p5.treegl.js></script> 
+             <script src=/VisualComputing2022_2/sketches/libraries/p5.easycam.js></script> 
+            
+            
+            
+            <script src=/VisualComputing2022_2/sketches/Taller3/Texturing/video_cube.js></script>
+          </head>
+          <style>
+            body {
+              background-color: #343a40;
+            }
+            </style>
+          <body >
+          </body>
+        </html>
+        " scrolling=no></iframe><h2 id=texture-sampling>Texture sampling
 <a class=anchor href=#texture-sampling>#</a></h2><p>Sampling a texture at given texcoords2 coordinates (defined as a vec2 in [0..1]) always requires issuing a call to glsl texture2D within your custom shader. It’s needed for example to compute a lightness visualization of a given source image (video), while speeding its visualization up (compared to performing the same computation by software):</p><p><iframe id=luma style=width:725px;height:525px;padding:0;border:none;background-color:#343a40;background:#343a40 srcdoc="
         <!DOCTYPE html>
         <html>
           <head>
             <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js></script>
             <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/addons/p5.sound.min.js></script>
-             <script src=https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js></script> 
+             <script src=/VisualComputing2022_2/sketches/libraries/p5.treegl.js></script> 
             
             
             
@@ -325,5 +346,5 @@ uv.js let uvShader; function preload() { // Define geometry directly in clip spa
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>vec4</span> <span style=color:#a6e22e>texel</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>texture2D</span>(<span style=color:#a6e22e>texture</span>, <span style=color:#a6e22e>texcoords2</span>);
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>grey_scale</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>vec4</span>((<span style=color:#a6e22e>vec3</span>(<span style=color:#a6e22e>luma</span>(<span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>rgb</span>))), <span style=color:#ae81ff>1.0</span>) <span style=color:#f92672>:</span> <span style=color:#a6e22e>texel</span>;
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div></div></details></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/Jsalasm/VisualComputing2022_2//commit/4256f32733bc3a4922c1d8fec2eeb307d054a00c title='Last modified by ccontrerasc | November 27, 2022' target=_blank rel=noopener><img src=/VisualComputing2022_2/svg/calendar.svg class=book-icon alt=Calendar>
+</span></span></code></pre></div></div></details></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/Jsalasm/VisualComputing2022_2//commit/db69a6a4b3e98c9996d1c41440aa3deea4d8341f title='Last modified by ccontrerasc | November 27, 2022' target=_blank rel=noopener><img src=/VisualComputing2022_2/svg/calendar.svg class=book-icon alt=Calendar>
 <span>November 27, 2022</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#texturing>Texturing</a><ul><li><a href=#uv-visualization>UV Visualization</a></li><li><a href=#3d>3D</a></li><li><a href=#world>World</a></li><li><a href=#screen>Screen</a></li></ul></li><li><a href=#texture-mapping>Texture mapping</a></li><li><a href=#texture-sampling>Texture sampling</a></li></ul></li></ul></nav></div></aside></main></body></html>

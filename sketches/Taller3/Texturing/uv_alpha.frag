@@ -1,10 +1,10 @@
-precision mediump float;
-
+precision highp float;
 varying vec2 texcoords2;
 varying vec4 color4;
-// uniform is sent by the sketch
+uniform float x;
 uniform float opacity;
 
 void main() {
-  gl_FragColor = vec4(texcoords2.xy, 0.0, opacity);
+  vec2 newtex = (texcoords2 + 1.) / 2.;
+  gl_FragColor = vec4(vec3(newtex,x),opacity);
 }

@@ -1,50 +1,40 @@
+let easycam;
 let uvShader;
+let button;
+let slider;
+let w;
+let h;
 
 function preload() {
-  // Define geometry directly in clip space (i.e., matrices: Tree.NONE).
-  // Interpolate only texture coordinates (i.e., varyings: Tree.texcoords2).
-  // see: https://github.com/VisualComputing/p5.treegl#handling
   uvShader = readShader('/VisualComputing2022_2/sketches/Taller3/Texturing/uv.frag',
-                        { matrices: Tree.NONE, varyings: Tree.texcoords2 });
+                  { matrices: Tree.pmvMatrix, varyings: Tree.texcoords2 });
 }
 
 function setup() {
-  // shaders require WEBGL mode to work
-  createCanvas(300, 300, WEBGL);
-  noStroke();
-  // see: https://p5js.org/reference/#/p5/shader
+  createCanvas(500, 500, WEBGL);
+  //textureMode(NORMAL);
   shader(uvShader);
-  // https://p5js.org/reference/#/p5/textureMode
-  // best and simplest is to just always used NORMAL
-  textureMode(NORMAL);
+  w = width/2
+  h = height/2
+  slider = createSlider(0, 255, 0);
+  slider.position(350, 10);
+  button = createButton('Flip');
+  button.position(10, 10);
+  button.mousePressed(flip);
 }
 
 function draw() {
-  background(0);
-  /*
-  clip-space quad shape, i.e., both x and y vertex coordinates ∈ [-1..1]
-  since textureMode is NORMAL, texture coordinates ∈ [-1..1]
-  see: https://p5js.org/reference/#/p5/beginShape
-       https://p5js.org/reference/#/p5/vertex
-        y                  v
-        |                  |
-  (-1,1)|     (1,1)        (0,1)     (1,1)
-  *_____|_____*            *__________*   
-  |     |     |            |          |        
-  |_____|_____|__x         | texture  |        
-  |     |     |            |  space   |
-  *_____|_____*            *__________*___ u
-  (-1,-1)    (1,-1)       (0,0)    (1,0) 
-  */
-  beginShape();
-  vertex(-1, -1, 0, 0, 0);
-  vertex( 1, -1, 0, 1, 0);
-  vertex( 1,  1, 0, 1, 1);
-  vertex(-1,  1, 0, 0, 1);
-  endShape();
-  // ✨ it's worth noting (not mentioned in the p5 api docs though)
-  // that quad (https://p5js.org/reference/#/p5/quad) also adds the
-  // texture coords to each of its vertices. Hence:
-  // quad(-1, -1, 1, -1, 1, 1, -1, 1);
-  // produce the same results as the above beginShape / endShape
+  push();
+  background(200);
+  uvShader.setUniform('x', slider.value() / 255);
+  noStroke();
+  quad(-w,-h,w,-h,
+        w,h,-w,h)
+  pop();
+}
+
+function flip() {
+  w = -w
+  h = -h
+  redraw()
 }

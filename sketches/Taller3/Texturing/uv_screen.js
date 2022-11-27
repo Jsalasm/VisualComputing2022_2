@@ -14,7 +14,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(300, 300, WEBGL);
+  createCanvas(500, 500, WEBGL);
   // easycam stuff
   let state = {
     distance: 250,           // scalar
@@ -31,25 +31,27 @@ function setup() {
 }
 
 function draw() {
-  background(200);
+  background(255);
   // reset shader so that the default shader is used to render the 3D scene
   resetShader();
   // world space scene
   axes();
   grid();
-  translate(0, -70);
+  push();
+  translate(0, -70, 20);
   rotateY(0.5);
   fill(color(255, 0, 255, 125));
-  box(30, 50);
-  translate(70, 70);
+  cone(80, -80);
+  pop();
+  translate(50, 50, 25);
   fill(color(0, 255, 255, 125));
-  sphere(30, 50);
+  for (let i = 0; i < 10; i ++) {
+    ellipse(0, 0, 30, 150);
+    rotate(PI/5);
+  }
   // use custom shader
   shader(uvShader);
-  // https://p5js.org/reference/#/p5.Shader/setUniform
   uvShader.setUniform('opacity', opacity.value());
-  // screen-space quad (i.e., x ∈ [0..width] and y ∈ [0..height])
-  // see: https://github.com/VisualComputing/p5.treegl#heads-up-display
   beginHUD();
   noStroke();
   quad(0, 0, width, 0, width, height, 0, height);
