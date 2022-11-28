@@ -55,12 +55,12 @@ function preload() {
         { varyings: Tree.texcoords2 }
     );
 
-    img = loadImage('/VisualComputing2022_2/sketches/Taller3/ImageProcessing/nature.jpg');
+    img = loadImage('/VisualComputing2022_2/sketches/Taller3/ImageProcessing/nature1.jpg');
 }
 
 function setup() {
     // shaders require WEBGL mode to work
-    createCanvas(500, 500, WEBGL);
+    createCanvas(700, 700, WEBGL);
     noStroke();
 
     textureMode(NORMAL);
