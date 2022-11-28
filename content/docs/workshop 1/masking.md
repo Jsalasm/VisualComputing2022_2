@@ -132,7 +132,7 @@ El manejo del kernel como del histograma se hace mediante teclado, mientras que 
 | `h`  | Mostrar u ocultar histograma|
 {{< /details >}}
 
-{{< p5-iframe sketch="/VisualComputing2022_2/sketches/masking.js" width="515" height="515" >}}
+{{< p5-iframe sketch="/VisualComputing2022_2/sketches/Taller1/masking.js" width="515" height="515" >}}
 
 {{< details "Código" >}}
 
