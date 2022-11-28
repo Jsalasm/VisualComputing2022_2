@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Texturing # Una textura es una imagen (es decir, un mapa de bits o una procedural) mapeada en la superficie de una figura usualmente en un triángulo o basado en ello.
-UV Visualization # uv.js let uvShader; function preload() { // Define geometry directly in clip space (i.e., matrices: Tree.NONE). // Interpolate only texture coordinates (i.e., varyings: Tree.texcoords2). // see: https://github.com/VisualComputing/p5.treegl#handling uvShader = readShader('/VisualComputing2022_2/sketches/Taller3/Texturing/uv.frag', { matrices: Tree.NONE, varyings: Tree.texcoords2 }); } function setup() { // shaders require WEBGL mode to work createCanvas(300, 300, WEBGL); noStroke(); // see: https://p5js."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="Texturing # Una textura es una imagen (es decir, un mapa de bits o una procedural) mapeada en la superficie de una figura usualmente en un triángulo o basado en ello.
-UV Visualization # uv.js let uvShader; function preload() { // Define geometry directly in clip space (i.e., matrices: Tree.NONE). // Interpolate only texture coordinates (i.e., varyings: Tree.texcoords2). // see: https://github.com/VisualComputing/p5.treegl#handling uvShader = readShader('/VisualComputing2022_2/sketches/Taller3/Texturing/uv.frag', { matrices: Tree.NONE, varyings: Tree.texcoords2 }); } function setup() { // shaders require WEBGL mode to work createCanvas(300, 300, WEBGL); noStroke(); // see: https://p5js."><meta property="og:type" content="article"><meta property="og:url" content="https://jsalasm.github.io/VisualComputing2022_2/docs/workshop-3/2.-Texturing/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2022-11-27T21:05:30-05:00"><title>2. Texturing | Showcase Template</title><link rel=manifest href=/VisualComputing2022_2/manifest.json><link rel=icon href=/VisualComputing2022_2/favicon.png type=image/x-icon><link rel=stylesheet href=/VisualComputing2022_2/book.min.ab46de3e725a6415339a37bba23a0067534a37289b063c9f8d011515a63097a8.css integrity="sha256-q0bePnJaZBUzmje7ojoAZ1NKNyibBjyfjQEVFaYwl6g=" crossorigin=anonymous><script defer src=/VisualComputing2022_2/flexsearch.min.js></script>
-<script defer src=/VisualComputing2022_2/en.search.min.26aa48e0cbd7f11d0bce2df2da508fe69ccafe3ff8b5184d3ee2879219615ee7.js integrity="sha256-JqpI4MvX8R0Lzi3y2lCP5pzK/j/4tRhNPuKHkhlhXuc=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+UV Visualization # uv.js let easycam; let uvShader; let button; let slider; let w; let h; function preload() { uvShader = readShader('/VisualComputing2022_2/sketches/Taller3/Texturing/uv.frag', { matrices: Tree.pmvMatrix, varyings: Tree.texcoords2 }); } function setup() { createCanvas(500, 500, WEBGL); //textureMode(NORMAL); shader(uvShader); w = width/2 h = height/2 slider = createSlider(0, 255, 0); slider."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="Texturing # Una textura es una imagen (es decir, un mapa de bits o una procedural) mapeada en la superficie de una figura usualmente en un triángulo o basado en ello.
+UV Visualization # uv.js let easycam; let uvShader; let button; let slider; let w; let h; function preload() { uvShader = readShader('/VisualComputing2022_2/sketches/Taller3/Texturing/uv.frag', { matrices: Tree.pmvMatrix, varyings: Tree.texcoords2 }); } function setup() { createCanvas(500, 500, WEBGL); //textureMode(NORMAL); shader(uvShader); w = width/2 h = height/2 slider = createSlider(0, 255, 0); slider."><meta property="og:type" content="article"><meta property="og:url" content="https://jsalasm.github.io/VisualComputing2022_2/docs/workshop-3/2.-Texturing/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2022-11-28T09:59:31-05:00"><title>2. Texturing | Showcase Template</title><link rel=manifest href=/VisualComputing2022_2/manifest.json><link rel=icon href=/VisualComputing2022_2/favicon.png type=image/x-icon><link rel=stylesheet href=/VisualComputing2022_2/book.min.ab46de3e725a6415339a37bba23a0067534a37289b063c9f8d011515a63097a8.css integrity="sha256-q0bePnJaZBUzmje7ojoAZ1NKNyibBjyfjQEVFaYwl6g=" crossorigin=anonymous><script defer src=/VisualComputing2022_2/flexsearch.min.js></script>
+<script defer src=/VisualComputing2022_2/en.search.min.d9b8de5e8c00e87d034f476bb66e88a601bac04b3f0535428dab878f227fe07d.js integrity="sha256-2bjeXowA6H0DT0drtm6IpgG6wEs/BTVCjauHjyJ/4H0=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/VisualComputing2022_2/><span>Showcase Template</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><a href=/VisualComputing2022_2/docs/authors/>Authors</a></li><li><a href=/VisualComputing2022_2/docs/logs/>Logs</a></li><li><input type=checkbox id=section-cb5166b5972776a786c8f0abb960e1df class=toggle>
 <label for=section-cb5166b5972776a786c8f0abb960e1df class="flex justify-between"><a role=button>Workshop 1</a></label><ul><li><a href=/VisualComputing2022_2/docs/workshop-1/Illusions/>Illusions</a></li><li><a href=/VisualComputing2022_2/docs/workshop-1/masking/>Masking</a></li></ul></li><li><input type=checkbox id=section-b3489b1dba5179c28e00fd119bd3b043 class=toggle>
 <label for=section-b3489b1dba5179c28e00fd119bd3b043 class="flex justify-between"><a role=button>Workshop 2</a></label><ul><li><a href=/VisualComputing2022_2/docs/workshop-2/ames_window/>Ames Window</a></li><li><a href=/VisualComputing2022_2/docs/workshop-2/color-shading/>Color Shading</a></li><li><input type=checkbox id=section-d454431037e3917925119827f2181f03 class=toggle>
@@ -31,67 +31,53 @@ UV Visualization # uv.js let uvShader; function preload() { // Define geometry d
           <body >
           </body>
         </html>
-        " scrolling=no></iframe><p><details><summary>uv.js</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>uvShader</span>;
+        " scrolling=no></iframe><p><details><summary>uv.js</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>easycam</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>uvShader</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>button</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>slider</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>w</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>h</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>preload</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// Define geometry directly in clip space (i.e., matrices: Tree.NONE).
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// Interpolate only texture coordinates (i.e., varyings: Tree.texcoords2).
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// see: https://github.com/VisualComputing/p5.treegl#handling
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>uvShader</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>readShader</span>(<span style=color:#e6db74>&#39;/VisualComputing2022_2/sketches/Taller3/Texturing/uv.frag&#39;</span>,
-</span></span><span style=display:flex><span>                        { <span style=color:#a6e22e>matrices</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>NONE</span>, <span style=color:#a6e22e>varyings</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>texcoords2</span> });
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>uvShader</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>readShader</span>(<span style=color:#e6db74>&#39;/VisualComputing2022_2/sketches/Taller3/Texturing/uv.frag&#39;</span>,
+</span></span><span style=display:flex><span>                  { <span style=color:#a6e22e>matrices</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>pmvMatrix</span>, <span style=color:#a6e22e>varyings</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>texcoords2</span> });
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>setup</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// shaders require WEBGL mode to work
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>createCanvas</span>(<span style=color:#ae81ff>300</span>, <span style=color:#ae81ff>300</span>, <span style=color:#a6e22e>WEBGL</span>);
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>noStroke</span>();
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// see: https://p5js.org/reference/#/p5/shader
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>createCanvas</span>(<span style=color:#ae81ff>500</span>, <span style=color:#ae81ff>500</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>  <span style=color:#75715e>//textureMode(NORMAL);
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>shader</span>(<span style=color:#a6e22e>uvShader</span>);
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// https://p5js.org/reference/#/p5/textureMode
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// best and simplest is to just always used NORMAL
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>textureMode</span>(<span style=color:#a6e22e>NORMAL</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>w</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>width</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>h</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>height</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>slider</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createSlider</span>(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>255</span>, <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>slider</span>.<span style=color:#a6e22e>position</span>(<span style=color:#ae81ff>350</span>, <span style=color:#ae81ff>10</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>button</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createButton</span>(<span style=color:#e6db74>&#39;Flip&#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>button</span>.<span style=color:#a6e22e>position</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>10</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>button</span>.<span style=color:#a6e22e>mousePressed</span>(<span style=color:#a6e22e>flip</span>);
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>draw</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>0</span>);
-</span></span><span style=display:flex><span>  <span style=color:#75715e>/*
-</span></span></span><span style=display:flex><span><span style=color:#75715e>  clip-space quad shape, i.e., both x and y vertex coordinates ∈ [-1..1]
-</span></span></span><span style=display:flex><span><span style=color:#75715e>  since textureMode is NORMAL, texture coordinates ∈ [-1..1]
-</span></span></span><span style=display:flex><span><span style=color:#75715e>  see: https://p5js.org/reference/#/p5/beginShape
-</span></span></span><span style=display:flex><span><span style=color:#75715e>       https://p5js.org/reference/#/p5/vertex
-</span></span></span><span style=display:flex><span><span style=color:#75715e>        y                  v
-</span></span></span><span style=display:flex><span><span style=color:#75715e>        |                  |
-</span></span></span><span style=display:flex><span><span style=color:#75715e>  (-1,1)|     (1,1)        (0,1)     (1,1)
-</span></span></span><span style=display:flex><span><span style=color:#75715e>  *_____|_____*            *__________*   
-</span></span></span><span style=display:flex><span><span style=color:#75715e>  |     |     |            |          |        
-</span></span></span><span style=display:flex><span><span style=color:#75715e>  |_____|_____|__x         | texture  |        
-</span></span></span><span style=display:flex><span><span style=color:#75715e>  |     |     |            |  space   |
-</span></span></span><span style=display:flex><span><span style=color:#75715e>  *_____|_____*            *__________*___ u
-</span></span></span><span style=display:flex><span><span style=color:#75715e>  (-1,-1)    (1,-1)       (0,0)    (1,0) 
-</span></span></span><span style=display:flex><span><span style=color:#75715e>  */</span>
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>beginShape</span>();
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>);
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>( <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>);
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>( <span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>);
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>);
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>endShape</span>();
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// ✨ it&#39;s worth noting (not mentioned in the p5 api docs though)
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// that quad (https://p5js.org/reference/#/p5/quad) also adds the
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// texture coords to each of its vertices. Hence:
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// quad(-1, -1, 1, -1, 1, 1, -1, 1);
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// produce the same results as the above beginShape / endShape
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
-</span></span></code></pre></div></div></details><details><summary>uv.frag</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#a6e22e>precision</span> <span style=color:#a6e22e>mediump</span> <span style=color:#66d9ef>float</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>200</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>uvShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;x&#39;</span>, <span style=color:#a6e22e>slider</span>.<span style=color:#a6e22e>value</span>() <span style=color:#f92672>/</span> <span style=color:#ae81ff>255</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>noStroke</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>quad</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>w</span>,<span style=color:#f92672>-</span><span style=color:#a6e22e>h</span>,<span style=color:#a6e22e>w</span>,<span style=color:#f92672>-</span><span style=color:#a6e22e>h</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>w</span>,<span style=color:#a6e22e>h</span>,<span style=color:#f92672>-</span><span style=color:#a6e22e>w</span>,<span style=color:#a6e22e>h</span>)
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// the texture coordinates varying was defined in 
-</span></span></span><span style=display:flex><span><span style=color:#75715e>// the vertex shader by treegl readShader()
-</span></span></span><span style=display:flex><span><span style=color:#75715e>// open your console and &amp; see!
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>varying</span> <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>texcoords2</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>flip</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>w</span> <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#a6e22e>w</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>h</span> <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#a6e22e>h</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>redraw</span>()
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></details><details><summary>uv.frag</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#a6e22e>precision</span> <span style=color:#a6e22e>highp</span> <span style=color:#66d9ef>float</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>varying</span> <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>texcoords2</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>x</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// glsl swizzling is both handy and elegant
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// see: https://www.khronos.org/opengl/wiki/Data_Type_(GLSL)#Swizzling
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>vec4</span>(<span style=color:#a6e22e>texcoords2</span>.<span style=color:#a6e22e>xy</span>, <span style=color:#ae81ff>0.0</span>, <span style=color:#ae81ff>1.0</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>newtex</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>texcoords2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1.</span>) <span style=color:#f92672>/</span> <span style=color:#ae81ff>2.</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>vec4</span>(<span style=color:#a6e22e>vec3</span>(<span style=color:#a6e22e>newtex</span>,<span style=color:#a6e22e>x</span>),<span style=color:#ae81ff>1.0</span>);
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div></div></details></p><h3 id=3d>3D
 <a class=anchor href=#3d>#</a></h3><p>La visualización 3D es el proceso de crear gráficos y renderizar diseños utilizando software 3D. Muchas industrias se benefician de la visualización en 3D, desde la arquitectura, el cine y los juegos hasta la ingeniería y la fabricación. Se crea una cantidad de productos y visiones en visualización 3D antes de la ejecución, lo que ahorra tiempo y costos a los productores, fabricantes y clientes.</p><h3 id=world>World
@@ -119,41 +105,34 @@ UV Visualization # uv.js let uvShader; function preload() { // Define geometry d
         " scrolling=no></iframe>
 <details><summary>uv_world.js</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>easycam</span>;
 </span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>uvShader</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>slider</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>preload</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// Define geometry in world space (i.e., matrices: Tree.pmvMatrix).
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// The projection and modelview matrices may be emitted separately
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// (i.e., matrices: Tree.pMatrix | Tree.mvMatrix), which actually
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// leads to the same gl_Position result.
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// Interpolate only texture coordinates (i.e., varyings: Tree.texcoords2).
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// see: https://github.com/VisualComputing/p5.treegl#handling
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>uvShader</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>readShader</span>(<span style=color:#e6db74>&#39;/VisualComputing2022_2/sketches/Taller3/Texturing/uv.frag&#39;</span>,
-</span></span><span style=display:flex><span>                  { <span style=color:#a6e22e>matrices</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>pmvMatrix</span>, <span style=color:#a6e22e>varyings</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>texcoords2</span> });
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>uvShader</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>readShader</span>(<span style=color:#e6db74>&#39;/VisualComputing2022_2/sketches/Taller3/Texturing/uv.frag&#39;</span>,
+</span></span><span style=display:flex><span>          { <span style=color:#a6e22e>precision</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>highp</span>,<span style=color:#a6e22e>matrices</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>pmvMatrix</span>, <span style=color:#a6e22e>varyings</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>texcoords2</span> });
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>setup</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>createCanvas</span>(<span style=color:#ae81ff>300</span>, <span style=color:#ae81ff>300</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>createCanvas</span>(<span style=color:#ae81ff>500</span>, <span style=color:#ae81ff>500</span>, <span style=color:#a6e22e>WEBGL</span>);
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>textureMode</span>(<span style=color:#a6e22e>NORMAL</span>);
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// use custom shader
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>shader</span>(<span style=color:#a6e22e>uvShader</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>shader</span>(<span style=color:#a6e22e>uvShader</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>slider</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createSlider</span>(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>255</span>, <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>slider</span>.<span style=color:#a6e22e>position</span>(<span style=color:#ae81ff>350</span>, <span style=color:#ae81ff>10</span>);
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>draw</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>200</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>uvShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;x&#39;</span>, <span style=color:#a6e22e>slider</span>.<span style=color:#a6e22e>value</span>() <span style=color:#f92672>/</span> <span style=color:#ae81ff>255</span>);
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>orbitControl</span>();
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>axes</span>();
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>push</span>();
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>noStroke</span>();
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// world-space quad
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// (i.e., p5 world space definition: https://t.ly/GeYP)
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>quad</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>width</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>height</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>, <span style=color:#a6e22e>width</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>height</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>,
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>width</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>, <span style=color:#a6e22e>height</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>width</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>, <span style=color:#a6e22e>height</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ellipsoid</span>(<span style=color:#a6e22e>width</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>4</span>, <span style=color:#a6e22e>height</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>4</span>, <span style=color:#a6e22e>width</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>4</span>);
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>pop</span>();
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>mouseWheel</span>(<span style=color:#a6e22e>event</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#75715e>//comment to enable page scrolling
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div></div></details></p><h3 id=screen>Screen
 <a class=anchor href=#screen>#</a></h3><p><iframe id=uv_screen style=width:500px;height:500px;padding:0;border:none;background-color:#343a40;background:#343a40 srcdoc="
@@ -183,13 +162,7 @@ UV Visualization # uv.js let uvShader; function preload() { // Define geometry d
 </span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>opacity</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>preload</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// Define geometry in world space (i.e., matrices: Tree.pmvMatrix).
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// The projection and modelview matrices may be emitted separately
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// (i.e., matrices: Tree.pMatrix | Tree.mvMatrix), which actually
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// leads to the same gl_Position result.
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// Interpolate only texture coordinates (i.e., varyings: Tree.texcoords2).
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// see: https://github.com/VisualComputing/p5.treegl#handling
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>uvShader</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>readShader</span>(<span style=color:#e6db74>&#39;/VisualComputing2022_2/sketches/Taller3/Texturing/uv_alpha.frag&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>uvShader</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>readShader</span>(<span style=color:#e6db74>&#39;/VisualComputing2022_2/sketches/Taller3/Texturing/uv_alpha.frag&#39;</span>,
 </span></span><span style=display:flex><span>              { <span style=color:#a6e22e>matrices</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>pmvMatrix</span>, <span style=color:#a6e22e>varyings</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>texcoords2</span> });
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
@@ -240,15 +213,15 @@ UV Visualization # uv.js let uvShader; function preload() { // Define geometry d
 </span></span><span style=display:flex><span>  <span style=color:#75715e>//comment to enable page scrolling
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div></div></details><details><summary>uv_alpha.frag</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#a6e22e>precision</span> <span style=color:#a6e22e>mediump</span> <span style=color:#66d9ef>float</span>;
-</span></span><span style=display:flex><span>
+</span></span></code></pre></div></div></details><details><summary>uv_alpha.frag</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#a6e22e>precision</span> <span style=color:#a6e22e>highp</span> <span style=color:#66d9ef>float</span>;
 </span></span><span style=display:flex><span><span style=color:#a6e22e>varying</span> <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>texcoords2</span>;
 </span></span><span style=display:flex><span><span style=color:#a6e22e>varying</span> <span style=color:#a6e22e>vec4</span> <span style=color:#a6e22e>color4</span>;
-</span></span><span style=display:flex><span><span style=color:#75715e>// uniform is sent by the sketch
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>uniform</span> <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>opacity</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>x</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>opacity</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>vec4</span>(<span style=color:#a6e22e>texcoords2</span>.<span style=color:#a6e22e>xy</span>, <span style=color:#ae81ff>0.0</span>, <span style=color:#a6e22e>opacity</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>newtex</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>texcoords2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1.</span>) <span style=color:#f92672>/</span> <span style=color:#ae81ff>2.</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>vec4</span>(<span style=color:#a6e22e>vec3</span>(<span style=color:#a6e22e>newtex</span>,<span style=color:#a6e22e>x</span>),<span style=color:#a6e22e>opacity</span>);
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div></div></details></p><h2 id=texture-mapping>Texture mapping
 <a class=anchor href=#texture-mapping>#</a></h2><p>El mapeo de texturas es un proceso de diseño gráfico en el que una superficie bidimensional (2D), denominada mapa de texturas, se &ldquo;envuelve&rdquo; alrededor de un objeto tridimensional (3D). Así, el objeto tridimensional adquiere una textura superficial similar a la de la superficie bidimensional.</p><iframe id=video_cube style=width:500px;height:500px;padding:0;border:none;background-color:#343a40;background:#343a40 srcdoc="
@@ -297,5 +270,5 @@ UV Visualization # uv.js let uvShader; function preload() { // Define geometry d
 </span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>mousePressed</span>() {
 </span></span><span style=display:flex><span>    <span style=color:#a6e22e>vid</span>.<span style=color:#a6e22e>loop</span>();
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div></div></details></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/Jsalasm/VisualComputing2022_2//commit/47586b78e6db529a015de048e5a2ca0757b43c07 title='Last modified by ccontrerasc | November 28, 2022' target=_blank rel=noopener><img src=/VisualComputing2022_2/svg/calendar.svg class=book-icon alt=Calendar>
+</span></span></code></pre></div></div></details></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/Jsalasm/VisualComputing2022_2//commit/56f6c329980f9aedc83fcd97deea8341f1f60a66 title='Last modified by ccontrerasc | November 28, 2022' target=_blank rel=noopener><img src=/VisualComputing2022_2/svg/calendar.svg class=book-icon alt=Calendar>
 <span>November 28, 2022</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#texturing>Texturing</a><ul><li><a href=#uv-visualization>UV Visualization</a></li><li><a href=#3d>3D</a></li><li><a href=#world>World</a></li><li><a href=#screen>Screen</a></li></ul></li><li><a href=#texture-mapping>Texture mapping</a></li></ul></li></ul></nav></div></aside></main></body></html>
