@@ -497,3 +497,8 @@ function mySelectEvent3() {
 Si usamos de manera adecuada los shaders, la elección de la texturas y el cuerpo a manejar, se puede hacer gran variedad de animaciones. Pero tiene que ser muy meditado en la eleccion de los elementos ya seleccionados, ya que por una simple textura que no cuadre, la animacion de vera afectada, de igual forma si el cuerpo no tiene suficientes aristas, se tendra que conseguir otro cuerpo que se adecue a la animación propuesta.
 
 Sí bien no se uso procedural animation tal cual, fue un breve acercamiento ante el cambio de una animacion por una textura en tiempo real.
+
+## 6. Referencias
+
+* [Procedural animation](https://en.wikipedia.org/wiki/Procedural_animation#:~:text=A%20procedural%20animation%20is%20a,be%20created%20using%20predefined%20animations)
+* [aferris-p5jsShaderExamples](https://github.com/aferriss/p5jsShaderExamples)
