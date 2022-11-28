@@ -12,8 +12,8 @@ const blendingMode = {
   "Lighten": 4,
 }
 
-// This values allow that the original colors (from color pickers) to be unaffected from
-// the color blending operation
+// This values allow that the original colors (from color pickers) 
+// to be unaffected from the color blending operation.
 //
 // These are the neutral elements of the operation.
 const neutral = {
