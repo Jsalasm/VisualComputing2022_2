@@ -48,6 +48,7 @@ let img;
 let maskShader;
 let radioButton;
 let brightnessSelection;
+let inputFile;
 
 function preload() {
     maskShader = readShader(
@@ -122,6 +123,24 @@ function addUI(){
         maskShader.setUniform("magnifierTool", radioButtonOptions[radioButton.value()].magnifierTool);
         maskShader.setUniform("regionTool", radioButtonOptions[radioButton.value()].regionTool);
     });
+
+    inputFile = createFileInput(handleFile);
+    inputFile.position(150, 10);
+}
+
+function handleFile(file) {
+    if (file.type === 'image') {
+        img = loadImage(file.data, () => {
+            let aspectRatio = img.width / img.height;
+            
+            resizeCanvas(700, 700 / aspectRatio, WEBGL);
+            img.resize(700, 700 / aspectRatio);
+
+            maskShader.setUniform('texture', img);
+        });
+    } else {
+        img = null;
+    }
 }
 
 function keyPressed() {
