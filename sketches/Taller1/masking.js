@@ -42,8 +42,8 @@ const y2020 = [0.2627, 0.6780, 0.0593];
 let img, file, selection, slider, histogram = [], show = false;
 
 function preload() {
-    file = loadImage("/VisualComputing2022_2/docs/workshop/images/astronaut.jpg");
-    img = loadImage("/VisualComputing2022_2/docs/workshop/images/astronaut.jpg");
+    file = loadImage("/VisualComputing2022_2/docs/workshop 1/images/astronaut.jpg");
+    img = loadImage("/VisualComputing2022_2/docs/workshop 1/images/astronaut.jpg");
 }
 
 function setup() {
