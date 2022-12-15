@@ -1,6 +1,7 @@
-# Showcase Template
+#Visit https://jsalasm.github.io/VisualComputing2022_2/docs/workshop-3/Bonus.-Surface-Texture-Animation/
 
-Visit https://jsalasm.github.io/VisualComputing2022_2/
+
+# Showcase Template
 
 Welcome to the [gohugo](https://gohugo.io/) template to create rich content [academic reports](https://www.wordy.com/writers-workshop/writing-an-academic-report/) having [p5.js](https://p5js.org/) sketches.
 
